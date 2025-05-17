@@ -34,6 +34,20 @@ async function run() {
             res.send( result )
         })
 
+        app.get('/products/:id', async ( req, res ) =>{
+            const id = req.params.id;
+            const result = await productCollection.findOne({ _id: new ObjectId(id) });
+            // console.log(result);
+            res.send( result )
+        })
+
+        app.delete('/products/:id', async ( req, res ) =>{
+            const id = req.params.id;
+            const result = await productCollection.deleteOne({ _id: new ObjectId(id) });
+            // console.log(result);
+            res.send( result )
+        })
+
         // Send a ping to confirm a successful connection
         // await client.db( "admin" ).command({ ping: 1 });
         // console.log( "Pinged your deployment. You successfully connected to MongoDB!" );
