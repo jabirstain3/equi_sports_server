@@ -27,6 +27,13 @@ async function run() {
         const database = client.db( 'equi_sports' );
         const productCollection = database.collection( 'products' );
 
+        app.get('/allproducts', async ( req, res ) =>{
+            const products = productCollection.find();
+            const result = await products.toArray();
+            // console.log(result);
+            res.send( result )
+        })
+
         app.get('/products', async ( req, res ) =>{
             const products = productCollection.find().limit(6);
             const result = await products.toArray();
