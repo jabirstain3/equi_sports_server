@@ -41,10 +41,17 @@ async function run() {
             res.send( result )
         })
 
+        app.get('/:email/products', async ( req, res ) =>{
+            const email = req.params.email;
+            const result = await productCollection.find({ userEmail: email }).toArray();
+            // console.log(result);
+            res.send( result )
+        })
+
         app.get('/products/:id', async ( req, res ) =>{
             const id = req.params.id;
             const result = await productCollection.findOne({ _id: new ObjectId(id) });
-            // console.log(result);
+            console.log(result);
             res.send( result )
         })
 
